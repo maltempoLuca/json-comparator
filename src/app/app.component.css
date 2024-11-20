@@ -1,0 +1,30 @@
+.json-box {
+  resize: none; /* Prevent independent resizing */
+  font-family: monospace;
+  height: 200px;
+  padding-right: 40px; /* Space for the button */
+}
+
+.position-relative {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  z-index: 10;
+  border: none;
+  font-size: 14px;
+  padding: 5px 10px;
+  background: none;
+}
+
+.copy-btn i {
+  font-size: 18px; /* Font Awesome icon size */
+  color: #6c757d; /* Default button color */
+}
+
+.copy-btn:hover i {
+  color: #007bff; /* Highlight color on hover */
+}

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  standalone: false,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  standalone: false
 })
 export class AppComponent {
   json1: string = '';
@@ -12,6 +12,25 @@ export class AppComponent {
   comparisonMode: string = 'keys'; // Default: compare keys
   diff1: string[] = [];
   diff2: string[] = [];
+
+  @ViewChild('inputBox1') inputBox1!: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('inputBox2') inputBox2!: ElementRef<HTMLTextAreaElement>;
+
+  // Synchronize dimensions of the input boxes
+  syncDimensions() {
+    const box1 = this.inputBox1.nativeElement;
+    const box2 = this.inputBox2.nativeElement;
+
+    // Match height
+    const maxHeight = Math.max(box1.scrollHeight, box2.scrollHeight);
+    box1.style.height = `${maxHeight}px`;
+    box2.style.height = `${maxHeight}px`;
+
+    // Match width
+    const maxWidth = Math.max(box1.offsetWidth, box2.offsetWidth);
+    box1.style.width = `${maxWidth}px`;
+    box2.style.width = `${maxWidth}px`;
+  }
 
   // Extract all keys recursively
   extractKeys(data: any, prefix: string = ''): Set<string> {
@@ -80,4 +99,13 @@ export class AppComponent {
       alert('Invalid JSON input.');
     }
   }
+
+  // Copy content to clipboard
+  copyContent(content: string) {
+    navigator.clipboard.writeText(content).then(
+      () => {},
+      (err) => alert('Failed to copy content.')
+    );
+  }
+
 }
