@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // For two-way data binding
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Required for Angular Material
+import { MatSelectModule } from '@angular/material/select'; // Material Dropdown
+import { MatButtonModule } from '@angular/material/button';
+import {AppComponent} from './app.component'; // Material Button
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent], // Declare your main AppComponent
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent], // Bootstrap the main AppComponent
 })
-export class AppModule { }
+export class AppModule {}

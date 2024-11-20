@@ -1,0 +1,30 @@
+<div style="display: flex; flex-direction: column; align-items: center; margin: 20px;">
+  <h1>JSON Comparator</h1>
+
+  <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+    <textarea [(ngModel)]="json1" rows="15" cols="40" placeholder="Paste JSON 1"></textarea>
+    <textarea [(ngModel)]="json2" rows="15" cols="40" placeholder="Paste JSON 2"></textarea>
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <label for="comparisonMode">Comparison Mode:</label>
+    <mat-select [(value)]="comparisonMode">
+      <mat-option value="keys">Keys Only</mat-option>
+      <mat-option value="values">Values Only</mat-option>
+      <mat-option value="both">Keys and Values</mat-option>
+    </mat-select>
+  </div>
+
+  <button mat-button (click)="compareJsons()">Compare</button>
+
+  <div *ngIf="diff1.length || diff2.length" style="display: flex; gap: 20px; margin-top: 20px;">
+    <div>
+      <h3>Differences in JSON 1</h3>
+      <textarea [value]="diff1.join('\n')" rows="15" cols="40" readonly></textarea>
+    </div>
+    <div>
+      <h3>Differences in JSON 2</h3>
+      <textarea [value]="diff2.join('\n')" rows="15" cols="40" readonly></textarea>
+    </div>
+  </div>
+</div>
